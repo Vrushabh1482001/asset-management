@@ -8,7 +8,7 @@ module.exports = class VENDOR {
   async getAllVendor() {
     try {
       const vendorList = await VendorModel.find({ isDelete: false }).sort({
-        vendorName: 1,
+        createdAt: 1,
       });
       return successResponse(
         StatusCodes.OK,

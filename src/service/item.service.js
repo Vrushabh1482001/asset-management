@@ -8,7 +8,7 @@ module.exports = class COMPANY {
   async getAllItem() {
     try {
       const itemList = await ItemModel.find({ isDelete: false }).sort({
-        itemName: 1,
+        createdAt: 1,
       });
       return successResponse(
         StatusCodes.OK,

@@ -10,7 +10,7 @@ module.exports = class USER {
   async getAllUser() {
     try {
       const userList = await UserModel.find({ isDelete: false }).sort({
-        userName: 1,
+        createdAt: 1,
       });
       return successResponse(
         StatusCodes.OK,

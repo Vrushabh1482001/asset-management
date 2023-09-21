@@ -83,7 +83,7 @@ module.exports = class ORDER {
         },
         { $set: { "user": { $first: "$user" } } },
         ...search,
-        { $sort: { orderDate: -1 } }
+        { $sort: { createdAt: -1 } }
       ])
       return successResponse(
         StatusCodes.OK,
@@ -149,7 +149,7 @@ module.exports = class ORDER {
           MSG.NOT_FOUND
         );
 
-      order = await OrderModel.findByIdAndUpdate(query.id, { receivedDate: await Date.now() }, {
+      order = await OrderModel.findByIdAndUpdate(query.id, { receivedDate: await Date.now(), isReceived: await true }, {
         new: true,
       });
       return successResponse(StatusCodes.OK, false, MSG.UPDATE_SUCCESS, order);
@@ -184,7 +184,7 @@ module.exports = class ORDER {
   /* --------------------------------------------------  getAllLocation  -------------------------------------------------- */
   async deleteOrder(query) {
     try {
-      let order = await UserModel.findById(query.id);
+      let order = await OrderModel.findById(query.id);
 
       if (!order)
         return errorResponse(

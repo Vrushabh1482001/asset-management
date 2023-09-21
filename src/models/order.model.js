@@ -1,3 +1,4 @@
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema(
@@ -40,6 +41,10 @@ const orderSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isReceived: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,
